@@ -88,6 +88,11 @@ function myArrayProto(){
       }
       return cloneArr;
    }
+
+   this.isMyArr = function(arg){
+      return this instanceof arg;
+   }
+   
 }
 
 let summ = function(elem){
@@ -96,10 +101,12 @@ let summ = function(elem){
 
 
 function MyArray () {
+
   this.length = 0;
-  for(let i = 0; i < arguments.length; i++) {
+  for(let i = 0; i < arguments.length; i++){
     this.myPush(arguments[i]);
   }
+  
 }
 
 
