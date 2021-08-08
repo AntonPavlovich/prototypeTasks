@@ -7,9 +7,13 @@ class MyArray{
   }
 
   push(...incomingValues){
-    for(let i = 0;i < incomingValues.length; i++){
-      this[this.length++] = arguments[i];
+    for(let number of incomingValues){
+      this[this.length++] = number;
     }return this.length;
+
+    // for(let i = 0;i < incomingValues.length; i++){
+    //   this[this.length++] = arguments[i];
+    // }return this.length;
   }
   pop(){
     if(this.length === 0){
@@ -88,8 +92,18 @@ class MyArray{
   }
 
     
-  [Symbol.iterator] = {
-    
+  [Symbol.iterator]() {
+    let i = 0;
+    let context = this;
+    return{
+      next(){
+        return {
+          value: context[i++] ,
+          done: i > context.length,
+        }
+      }
+    }
+
   }
 
    static isMyArr(obj){
@@ -100,3 +114,7 @@ class MyArray{
 
 let testArr = new MyArray(1,2,3,4);
 let test2 = new MyArray('kek','lol');
+
+for(let number of testArr){
+  console.log(number);
+}
